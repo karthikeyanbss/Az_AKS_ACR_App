@@ -80,7 +80,7 @@ resource acrPullAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' 
   name: guid(acr.id, aks.id, 'AcrPull')
   properties: {
     roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')
-    principalId: aks.properties.identityProfile.kubeletidentity.objectId
+    principalId: aks.properties.identityProfile.kubeletIdentity.objectId
     principalType: 'ServicePrincipal'
   }
   dependsOn: [
