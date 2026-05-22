@@ -6,7 +6,7 @@ LOCATION="${LOCATION:-eastus}"
 RESOURCE_GROUP_NAME="${RESOURCE_GROUP_NAME:-rg-aks-acr-test}"
 AKS_CLUSTER_NAME="${AKS_CLUSTER_NAME:-aks-minimal-test}"
 DNS_PREFIX="${DNS_PREFIX:-aksminimaltest}"
-UNIQUE_SUFFIX="${UNIQUE_SUFFIX:-$(date +%s)$$}"
+UNIQUE_SUFFIX="${UNIQUE_SUFFIX:-$(date +%s)$RANDOM}"
 ACR_NAME="${ACR_NAME:-acrtest${UNIQUE_SUFFIX}}"
 
 if [[ -z "${SUBSCRIPTION_ID}" ]]; then
@@ -15,8 +15,10 @@ if [[ -z "${SUBSCRIPTION_ID}" ]]; then
   exit 1
 fi
 
-echo "Logging in to Azure..."
-az login >/dev/null
+if ! az account show >/dev/null 2>&1; then
+  echo "Logging in to Azure..."
+  az login >/dev/null
+fi
 
 echo "Setting subscription ${SUBSCRIPTION_ID}..."
 az account set --subscription "${SUBSCRIPTION_ID}"
