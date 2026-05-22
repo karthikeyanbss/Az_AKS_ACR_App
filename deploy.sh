@@ -6,7 +6,7 @@ LOCATION="${LOCATION:-eastus}"
 RESOURCE_GROUP_NAME="${RESOURCE_GROUP_NAME:-rg-aks-acr-test}"
 AKS_CLUSTER_NAME="${AKS_CLUSTER_NAME:-aks-minimal-test}"
 DNS_PREFIX="${DNS_PREFIX:-aksminimaltest}"
-UNIQUE_SUFFIX="${UNIQUE_SUFFIX:-$(date +%s)}"
+UNIQUE_SUFFIX="${UNIQUE_SUFFIX:-$(date +%s)$$}"
 ACR_NAME="${ACR_NAME:-acrtest${UNIQUE_SUFFIX}}"
 
 if [[ -z "${SUBSCRIPTION_ID}" ]]; then
